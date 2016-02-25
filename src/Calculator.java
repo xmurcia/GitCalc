@@ -72,7 +72,7 @@ public class Calculator extends JFrame implements ActionListener{
 		
 		
 		//New message to be pushed
-		//Another one
+		//Another one............
 		jmenuFile = new JMenu("File");
 		jmenuFile.setFont(f121);
 		jmenuFile.setMnemonic(KeyEvent.VK_F);
