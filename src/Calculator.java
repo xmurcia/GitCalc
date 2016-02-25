@@ -41,7 +41,7 @@ import javax.swing.KeyStroke;
 public class Calculator extends JFrame implements ActionListener{
 	// Variables
 	
-
+	//Adios
 	int displayMode;
 
 	boolean clearOnNextDigit, percent;
