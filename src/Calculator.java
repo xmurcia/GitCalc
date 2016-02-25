@@ -40,9 +40,6 @@ import javax.swing.KeyStroke;
 
 public class Calculator extends JFrame implements ActionListener{
 	// Variables
-	//Claculator test
-	//hahahha retratado!
-	//MECCCC
 	
 	final int MAX_INPUT_LENGTH = 20;
 	final int INPUT_MODE = 0;
