@@ -42,6 +42,7 @@ public class Calculator extends JFrame implements ActionListener{
 	// Variables
 	//ALGO
 	
+	//fdsfsafsdf
 	final int MAX_INPUT_LENGTH = 20;
 	final int INPUT_MODE = 0;
 	final int RESULT_MODE = 1;
