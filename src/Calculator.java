@@ -40,7 +40,7 @@ import javax.swing.KeyStroke;
 
 public class Calculator extends JFrame implements ActionListener{
 	// Variables
-	//aaa
+	
 	int displayMode;
 
 	boolean clearOnNextDigit, percent;
@@ -70,6 +70,8 @@ public class Calculator extends JFrame implements ActionListener{
 		 * Have Provided some JMenuItem components with Keyboard Accelerators
 		 */ 
 		
+		
+		//New message to be pushed
 		jmenuFile = new JMenu("File");
 		jmenuFile.setFont(f121);
 		jmenuFile.setMnemonic(KeyEvent.VK_F);
