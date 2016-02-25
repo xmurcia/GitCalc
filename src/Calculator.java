@@ -40,6 +40,7 @@ import javax.swing.KeyStroke;
 
 public class Calculator extends JFrame implements ActionListener{
 	// Variables
+	//ALGO
 	
 	final int MAX_INPUT_LENGTH = 20;
 	final int INPUT_MODE = 0;
