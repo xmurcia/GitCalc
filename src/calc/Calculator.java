@@ -95,7 +95,7 @@ public class Calculator extends JFrame implements ActionListener{
 		mb.add(jmenuHelp);
 		setJMenuBar(mb);
 		
-		//Set frame layout manager.
+		//Set  frame layout manager.
 
 		this.setBackground(Color.gray);
 
