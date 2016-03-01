@@ -41,7 +41,7 @@ import javax.swing.KeyStroke;
 
 public class Calculator extends JFrame implements ActionListener{
 	/*
-	 * Variables
+	 * Variables in class "Global"
 	 */
 	
 	int displayMode;
