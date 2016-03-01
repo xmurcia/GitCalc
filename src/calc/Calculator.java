@@ -55,13 +55,11 @@ public class Calculator extends JFrame implements ActionListener{
 	private JPanel jplMaster, jplBackSpace, jplControl;
 	
 	/*
-	 * Font(String name, int style, int size)
-      Creates a new Font from the specified name, style and point size.
+	 * Font Size and Style changed
 	 */
 	Font f12 = new Font("DejaVu Sans", 0, 20);
 	Font f121 = new Font("DejaVu Sans", 1, 20);
 	
-	//HERE WE ARE SOME CHANGES
 	
 	// Constructor 
 	public Calculator() 
@@ -100,7 +98,9 @@ public class Calculator extends JFrame implements ActionListener{
 		this.setBackground(Color.gray);
 
 		jplMaster = new JPanel();
-
+		
+		
+		
 		jlbOutput = new JLabel("0");
 		jlbOutput.setHorizontalTextPosition(JLabel.RIGHT);
 		jlbOutput.setBackground(Color.red);
@@ -109,44 +109,26 @@ public class Calculator extends JFrame implements ActionListener{
 		// Add components to frame
 		getContentPane().add(jlbOutput, BorderLayout.NORTH);
 
-		jbnButtons = new JButton[23];
-//		GridLayout(int rows, int cols, int hgap, int vgap) 
+		
+		//Function to create all calculator buttons
+		jbnButtons = creaBotons();
 
-		JPanel jplButtons = new JPanel();			// container for Jbuttons
-
-		// Create numeric Jbuttons
-		for (int i=0; i<=9; i++)
-		{
-			// set each Jbutton label to the value of index
-			jbnButtons[i] = new JButton(String.valueOf(i));
-		}
-
-		// Create operator Jbuttons
-		jbnButtons[10] = new JButton("+/-");
-		jbnButtons[11] = new JButton(".");
-		jbnButtons[12] = new JButton("=");
-		jbnButtons[13] = new JButton("/");
-		jbnButtons[14] = new JButton("*");
-		jbnButtons[15] = new JButton("-");
-		jbnButtons[16] = new JButton("+");
-		jbnButtons[17] = new JButton("sqrt");
-		jbnButtons[18] = new JButton("1/x");
-		jbnButtons[19] = new JButton("%");
+		
+		//	GridLayout(int rows, int cols, int hgap, int vgap) 
+		JPanel jplButtons = new JPanel();	
 		
 		jplBackSpace = new JPanel();
 		jplBackSpace.setLayout(new GridLayout(1, 1, 2, 2));
 		
 	
 
-		jbnButtons[20] = new JButton("Backspace");
 		jplBackSpace.add(jbnButtons[20]);
 
 		jplControl = new JPanel();
 		jplControl.setLayout(new GridLayout(1, 2, 2 ,2));
 		
 
-		jbnButtons[21] = new JButton(" CE ");
-		jbnButtons[22] = new JButton("C");
+		
 
 		jplControl.add(jbnButtons[21]);
 		jplControl.add(jbnButtons[22]);
@@ -566,7 +548,39 @@ public class Calculator extends JFrame implements ActionListener{
 		clearOnNextDigit = true;
 	}
 	
-
+	
+	public JButton[] creaBotons(){
+		
+		jbnButtons = new JButton[23];
+		// Create numeric Jbuttons
+				for (int i=0; i<=9; i++)
+				{
+					// set each Jbutton label to the value of index
+					jbnButtons[i] = new JButton(String.valueOf(i));
+				}
+				jbnButtons[10] = new JButton("+/-");
+				jbnButtons[11] = new JButton(".");
+				jbnButtons[12] = new JButton("=");
+				jbnButtons[13] = new JButton("/");
+				jbnButtons[14] = new JButton("*");
+				jbnButtons[15] = new JButton("-");
+				jbnButtons[16] = new JButton("+");
+				jbnButtons[17] = new JButton("sqrt");
+				jbnButtons[18] = new JButton("1/x");
+				jbnButtons[19] = new JButton("%");
+				jbnButtons[20] = new JButton("Backspace");
+				jbnButtons[21] = new JButton(" CE ");
+				jbnButtons[22] = new JButton("C");
+				
+		
+		return jbnButtons ;
+		
+	}
+	
+	public void addButtons(){
+		
+		
+	}
 
 	
 }		//End of Swing Calculator Class.
