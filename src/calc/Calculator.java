@@ -124,7 +124,7 @@ public class Calculator extends Other_Methods implements ActionListener{
 
 		clearAll();
 
-		//add WindowListener for closing frame and ending program
+		//add WindowListener for closing frame and ending program 
 		addWindowListener(new WindowAdapter() {
 
 				public void windowClosed(WindowEvent e)
