@@ -40,7 +40,6 @@ public class Calculator extends Create_GUI implements ActionListener{
 	 * Variables in class "Global"
 	 */
 	
-	CalculatorData data = new CalculatorData(new Font("DejaVu Sans", 0, 20), new Font("DejaVu Sans",  1, 20));
 
 
 	// Constructor 
