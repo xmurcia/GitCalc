@@ -39,7 +39,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
-public class Calculator extends JFrame implements ActionListener{
+public class Calculator extends Buttons implements ActionListener{
 	/*
 	 * Variables in class "Global"
 	 */
@@ -51,8 +51,6 @@ public class Calculator extends JFrame implements ActionListener{
 	JMenu jmenuFile, jmenuHelp;
 	JMenuItem jmenuitemExit, jmenuitemAbout;
     JLabel jlbOutput;
-	private JButton jbnButtons[];
-	private JPanel jplMaster, jplBackSpace, jplControl;
 	JPanel jplButtons;
 	
 	/*
