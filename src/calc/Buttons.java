@@ -1,5 +1,10 @@
 package calc;
 
+/**
+
+@author Xavi Murcia Daniel Perez
+**/
+
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
@@ -7,6 +12,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+
 
 public class Buttons extends JFrame {
 

@@ -1,4 +1,10 @@
 package calc;
+
+/**
+
+@author Xavi Murcia Daniel Perez
+**/
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;

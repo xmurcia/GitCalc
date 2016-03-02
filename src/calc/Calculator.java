@@ -1,8 +1,10 @@
 package calc;
-/*
-Name: Hemanth. B
-Website: http://www.java-swing-tutorial.com
+/**
 
+@author Xavi Murcia Daniel Perez
+**/
+
+/*
 Topic: A basic Java Swing Calculator
 
 Conventions Used in Source code

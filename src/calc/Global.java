@@ -1,5 +1,10 @@
 package calc;
 
+/**
+
+@author Xavi Murcia Daniel Perez
+**/
+
 public final class Global {
 
 	final static int MAX_INPUT_LENGTH = 20;

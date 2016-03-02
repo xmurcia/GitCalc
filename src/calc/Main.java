@@ -1,4 +1,10 @@
 package calc;
+
+/**
+
+@author Xavi Murcia Daniel Perez
+**/
+
 import java.awt.Container;
 
 public class Main {

@@ -1,6 +1,11 @@
 package calc;
 import javax.swing.JLabel;
 
+/**
+
+@author Xavi Murcia Daniel Perez
+**/
+
 public class UsesDisplayClass {
 	static boolean clearOnNextDigit;
 	static int displayMode;

@@ -1,5 +1,10 @@
 package calc;
 
+
+/**
+
+@author Xavi Murcia Daniel Perez
+**/
 import java.awt.Font;
 
 import javax.swing.JLabel;

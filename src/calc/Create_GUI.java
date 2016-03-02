@@ -1,5 +1,9 @@
 package calc;
 
+/**
+
+@author Xavi Murcia Daniel Perez
+**/
 import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridLayout;
@@ -33,6 +37,10 @@ public class Create_GUI extends Buttons {
 		super(arg0, arg1);
 	}
 
+	/**
+	 * Returns an array to Calculator class where buttons are loaded  
+	 * @return      Array of created buttons
+	 */
 	public JButton[] creaBotons() {
 		
 		jbnButtons = new JButton[23];
