@@ -44,22 +44,9 @@ public class Calculator extends Buttons implements ActionListener{
 	 * Variables in class "Global"
 	 */
 	
-	int displayMode;
-	boolean clearOnNextDigit, percent;
-	double lastNumber;
-	String lastOperator;
-	JMenu jmenuFile, jmenuHelp;
-	JMenuItem jmenuitemExit, jmenuitemAbout;
-    JLabel jlbOutput;
-	JPanel jplButtons;
-	
-	/*
-	 * Font Size and Style changed
-	 */
-	Font f12 = new Font("DejaVu Sans", 0, 20);
-	Font f121 = new Font("DejaVu Sans",  1, 20);
-	
-	
+	CalculatorData data = new CalculatorData(new Font("DejaVu Sans", 0, 20), new Font("DejaVu Sans",  1, 20));
+
+
 	// Constructor 
 	public Calculator() 
 	{
@@ -69,13 +56,13 @@ public class Calculator extends Buttons implements ActionListener{
 		loadGUI();
 		
 
-		jmenuitemAbout = new JMenuItem("About Calculator");
-		jmenuitemAbout.setFont(f12);
-		jmenuHelp.add(jmenuitemAbout);
+		data.jmenuitemAbout = new JMenuItem("About Calculator");
+		data.jmenuitemAbout.setFont(data.f12);
+		data.jmenuHelp.add(data.jmenuitemAbout);
 		
 		JMenuBar mb = new JMenuBar();
-		mb.add(jmenuFile);
-		mb.add(jmenuHelp);
+		mb.add(data.jmenuFile);
+		mb.add(data.jmenuHelp);
 		setJMenuBar(mb);
 		
 		//Set  frame layout manager.
@@ -86,17 +73,17 @@ public class Calculator extends Buttons implements ActionListener{
 		
 		
 		
-		jlbOutput = new JLabel("0");
-		jlbOutput.setHorizontalTextPosition(JLabel.RIGHT);
-		jlbOutput.setBackground(Color.red);
-		jlbOutput.setOpaque(true);
+		data.jlbOutput = new JLabel("0");
+		data.jlbOutput.setHorizontalTextPosition(JLabel.RIGHT);
+		data.jlbOutput.setBackground(Color.red);
+		data.jlbOutput.setOpaque(true);
 		
 		// Add components to frame
-		getContentPane().add(jlbOutput, BorderLayout.NORTH);
+		getContentPane().add(data.jlbOutput, BorderLayout.NORTH);
 		
 		//Function to create all calculator buttons
 		jbnButtons = creaBotons();
-		jplButtons = creaJPLButtons();	
+		data.jplButtons = creaJPLButtons();	
 		
 		
 		jplBackSpace = new JPanel();
@@ -109,7 +96,7 @@ public class Calculator extends Buttons implements ActionListener{
 
 //		Setting all Numbered JButton's to Blue. The rest to Red
 		for (int i=0; i<jbnButtons.length; i++)	{
-			jbnButtons[i].setFont(f12);
+			jbnButtons[i].setFont(data.f12);
 
 			if (i<10)
 				jbnButtons[i].setForeground(Color.orange);
@@ -124,7 +111,7 @@ public class Calculator extends Buttons implements ActionListener{
 		jplMaster.setLayout(new BorderLayout());
 		jplMaster.add(jplBackSpace, BorderLayout.WEST);
 		jplMaster.add(jplControl, BorderLayout.EAST);
-		jplMaster.add(jplButtons, BorderLayout.SOUTH);
+		jplMaster.add(data.jplButtons, BorderLayout.SOUTH);
 
 		// Add components to frame
 		getContentPane().add(jplMaster, BorderLayout.SOUTH);
@@ -135,8 +122,8 @@ public class Calculator extends Buttons implements ActionListener{
 			jbnButtons[i].addActionListener(this);
 		}
 		
-		jmenuitemAbout.addActionListener(this);
-		jmenuitemExit.addActionListener(this);
+		data.jmenuitemAbout.addActionListener(this);
+		data.jmenuitemExit.addActionListener(this);
 
 		clearAll();
 
@@ -156,10 +143,10 @@ public class Calculator extends Buttons implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		double result = 0;
 	   
-		if(e.getSource() == jmenuitemAbout){
+		if(e.getSource() == data.jmenuitemAbout){
 			JDialog dlgAbout = new CustomABOUTDialog(this, "About Java Swing Calculator", true);
 			dlgAbout.setVisible(true);
-		}else if(e.getSource() == jmenuitemExit){
+		}else if(e.getSource() == data.jmenuitemExit){
 			System.exit(0);
 		}	
 
@@ -239,7 +226,7 @@ public class Calculator extends Buttons implements ActionListener{
 						break;
 
 					case 17:	// sqrt
-						if (displayMode != Global.ERROR_MODE)
+						if (data.displayMode != Global.ERROR_MODE)
 						{
 							try
 							{
@@ -253,13 +240,13 @@ public class Calculator extends Buttons implements ActionListener{
 							catch(Exception ex)
 							{
 								displayError("Invalid input for function!");
-								displayMode = Global.ERROR_MODE;
+								data.displayMode = Global.ERROR_MODE;
 							}
 						}
 						break;
 
 					case 18:	// 1/x
-						if (displayMode != Global.ERROR_MODE){
+						if (data.displayMode != Global.ERROR_MODE){
 							try
 							{
 								if (getNumberInDisplay() == 0)
@@ -271,13 +258,13 @@ public class Calculator extends Buttons implements ActionListener{
 							
 							catch(Exception ex)	{
 								displayError("Cannot divide by zero!");
-								displayMode = Global.ERROR_MODE;
+								data.displayMode = Global.ERROR_MODE;
 							}
 						}
 						break;
 
 					case 19:	// %
-						if (displayMode != Global.ERROR_MODE){
+						if (data.displayMode != Global.ERROR_MODE){
 							try	{
 								result = getNumberInDisplay() / 100;
 								displayResult(result);
@@ -285,13 +272,13 @@ public class Calculator extends Buttons implements ActionListener{
 	
 							catch(Exception ex)	{
 								displayError("Invalid input for function!");
-								displayMode = Global.ERROR_MODE;
+								data.displayMode = Global.ERROR_MODE;
 							}
 						}
 						break;
 
 					case 20:	// backspace
-						if (displayMode != Global.ERROR_MODE){
+						if (data.displayMode != Global.ERROR_MODE){
 							setDisplayString(getDisplayString().substring(0,
 										getDisplayString().length() - 1));
 							
@@ -315,15 +302,15 @@ public class Calculator extends Buttons implements ActionListener{
 	
 	
 	void setDisplayString(String s){
-		jlbOutput.setText(s);
+		data.jlbOutput.setText(s);
 	}
 
 	String getDisplayString (){
-		return jlbOutput.getText();
+		return data.jlbOutput.getText();
 	}
 
 	void addDigitToDisplay(int digit){
-		if (clearOnNextDigit)
+		if (data.clearOnNextDigit)
 			setDisplayString("");
 
 		String inputString = getDisplayString();
@@ -337,14 +324,14 @@ public class Calculator extends Buttons implements ActionListener{
 		}
 		
 
-		displayMode = Global.INPUT_MODE;
-		clearOnNextDigit = false;
+		data.displayMode = Global.INPUT_MODE;
+		data.clearOnNextDigit = false;
 	}
 
 	void addDecimalPoint(){
-		displayMode = Global.INPUT_MODE;
+		data.displayMode = Global.INPUT_MODE;
 
-		if (clearOnNextDigit)
+		if (data.clearOnNextDigit)
 			setDisplayString("");
 
 		String inputString = getDisplayString();
@@ -356,7 +343,7 @@ public class Calculator extends Buttons implements ActionListener{
 	}
 
 	void processSignChange(){
-		if (displayMode == Global.INPUT_MODE)
+		if (data.displayMode == Global.INPUT_MODE)
 		{
 			String input = getDisplayString();
 
@@ -371,7 +358,7 @@ public class Calculator extends Buttons implements ActionListener{
 			
 		}
 
-		else if (displayMode == Global.RESULT_MODE)
+		else if (data.displayMode == Global.RESULT_MODE)
 		{
 			double numberInDisplay = getNumberInDisplay();
 		
@@ -382,35 +369,35 @@ public class Calculator extends Buttons implements ActionListener{
 
 	void clearAll()	{
 		setDisplayString("0");
-		lastOperator = "0";
-		lastNumber = 0;
-		displayMode = Global.INPUT_MODE;
-		clearOnNextDigit = true;
+		data.lastOperator = "0";
+		data.lastNumber = 0;
+		data.displayMode = Global.INPUT_MODE;
+		data.clearOnNextDigit = true;
 	}
 
 	void clearExisting(){
 		setDisplayString("0");
-		clearOnNextDigit = true;
-		displayMode = Global.INPUT_MODE;
+		data.clearOnNextDigit = true;
+		data.displayMode = Global.INPUT_MODE;
 	}
 
 	double getNumberInDisplay()	{
-		String input = jlbOutput.getText();
+		String input = data.jlbOutput.getText();
 		return Double.parseDouble(input);
 	}
 
 	void processOperator(String op) {
-		if (displayMode != Global.ERROR_MODE)
+		if (data.displayMode != Global.ERROR_MODE)
 		{
 			double numberInDisplay = getNumberInDisplay();
 
-			if (!lastOperator.equals("0"))	
+			if (!data.lastOperator.equals("0"))	
 			{
 				try
 				{
 					double result = processLastOperator();
 					displayResult(result);
-					lastNumber = result;
+					data.lastNumber = result;
 				}
 
 				catch (DivideByZeroException e)
@@ -420,18 +407,18 @@ public class Calculator extends Buttons implements ActionListener{
 		
 			else
 			{
-				lastNumber = numberInDisplay;
+				data.lastNumber = numberInDisplay;
 			}
 			
-			clearOnNextDigit = true;
-			lastOperator = op;
+			data.clearOnNextDigit = true;
+			data.lastOperator = op;
 		}
 	}
 
 	void processEquals(){
 		double result = 0;
 
-		if (displayMode != Global.ERROR_MODE){
+		if (data.displayMode != Global.ERROR_MODE){
 			try			
 			{
 				result = processLastOperator();
@@ -442,7 +429,7 @@ public class Calculator extends Buttons implements ActionListener{
 				displayError("Cannot divide by zero!");
 			}
 
-			lastOperator = "0";
+			data.lastOperator = "0";
 		}
 	}
 
@@ -450,38 +437,38 @@ public class Calculator extends Buttons implements ActionListener{
 		double result = 0;
 		double numberInDisplay = getNumberInDisplay();
 
-		if (lastOperator.equals("/"))
+		if (data.lastOperator.equals("/"))
 		{
 			if (numberInDisplay == 0)
 				throw (new DivideByZeroException());
 
-			result = lastNumber / numberInDisplay;
+			result = data.lastNumber / numberInDisplay;
 		}
 			
-		if (lastOperator.equals("*"))
-			result = lastNumber * numberInDisplay;
+		if (data.lastOperator.equals("*"))
+			result = data.lastNumber * numberInDisplay;
 
-		if (lastOperator.equals("-"))
-			result = lastNumber - numberInDisplay;
+		if (data.lastOperator.equals("-"))
+			result = data.lastNumber - numberInDisplay;
 
-		if (lastOperator.equals("+"))
-			result = lastNumber + numberInDisplay;
+		if (data.lastOperator.equals("+"))
+			result = data.lastNumber + numberInDisplay;
 
 		return result;
 	}
 
 	void displayResult(double result){
 		setDisplayString(Double.toString(result));
-		lastNumber = result;
-		displayMode = Global.RESULT_MODE;
-		clearOnNextDigit = true;
+		data.lastNumber = result;
+		data.displayMode = Global.RESULT_MODE;
+		data.clearOnNextDigit = true;
 	}
 
 	void displayError(String errorMessage){
 		setDisplayString(errorMessage);
-		lastNumber = 0;
-		displayMode = Global.ERROR_MODE;
-		clearOnNextDigit = true;
+		data.lastNumber = 0;
+		data.displayMode = Global.ERROR_MODE;
+		data.clearOnNextDigit = true;
 	}
 	
 	public JButton[] creaBotons(){
@@ -514,89 +501,89 @@ public class Calculator extends Buttons implements ActionListener{
 	
 	public JPanel creaJPLButtons(){
 		
-		jplButtons = new JPanel();
+		data.jplButtons = new JPanel();
 		
-		jplButtons.setLayout(new GridLayout(4, 5, 2, 2));
+		data.jplButtons.setLayout(new GridLayout(4, 5, 2, 2));
 		
 		//Add buttons to keypad panel starting at top left
 		// First row
 		for(int i=7; i<=9; i++)		{
-			jplButtons.add(jbnButtons[i]);
+			data.jplButtons.add(jbnButtons[i]);
 		}
 		
 		// add button / and sqrt
-		jplButtons.add(jbnButtons[13]);
-		jplButtons.add(jbnButtons[17]);
+		data.jplButtons.add(jbnButtons[13]);
+		data.jplButtons.add(jbnButtons[17]);
 		
 		// Second row
 		for(int i=4; i<=6; i++)
 		{
-			jplButtons.add(jbnButtons[i]);
+			data.jplButtons.add(jbnButtons[i]);
 		}
 		
 		// add button * and x^2
-		jplButtons.add(jbnButtons[14]);
-		jplButtons.add(jbnButtons[18]);
+		data.jplButtons.add(jbnButtons[14]);
+		data.jplButtons.add(jbnButtons[18]);
 
 		// Third row
 		for( int i=1; i<=3; i++)
 		{
-			jplButtons.add(jbnButtons[i]);
+			data.jplButtons.add(jbnButtons[i]);
 		}
 		
 		//adds button - and %
-		jplButtons.add(jbnButtons[15]);
-		jplButtons.add(jbnButtons[19]);
+		data.jplButtons.add(jbnButtons[15]);
+		data.jplButtons.add(jbnButtons[19]);
 		
 		//Fourth Row
 		// add 0, +/-, ., +, and =
-		jplButtons.add(jbnButtons[0]);
-		jplButtons.add(jbnButtons[10]);
-		jplButtons.add(jbnButtons[11]);
-		jplButtons.add(jbnButtons[16]);
-		jplButtons.add(jbnButtons[12]);
+		data.jplButtons.add(jbnButtons[0]);
+		data.jplButtons.add(jbnButtons[10]);
+		data.jplButtons.add(jbnButtons[11]);
+		data.jplButtons.add(jbnButtons[16]);
+		data.jplButtons.add(jbnButtons[12]);
 		
-		return jplButtons;
+		return data.jplButtons;
 		
 		
 	}
 	
 	public JMenu creaMenuFile(){
 		
-		jmenuFile = new JMenu();
-		jmenuFile.setFont(f121);
-		jmenuFile.setMnemonic(KeyEvent.VK_F);
+		data.jmenuFile = new JMenu();
+		data.jmenuFile.setFont(data.f121);
+		data.jmenuFile.setMnemonic(KeyEvent.VK_F);
 		
-		return jmenuFile;
+		return data.jmenuFile;
 		
 	}
 	
 	public JMenuItem creaMenuItem(){
-		jmenuitemExit = new JMenuItem("Exit");
-		jmenuitemExit.setFont(f12);
-		jmenuitemExit.setAccelerator(KeyStroke.getKeyStroke( KeyEvent.VK_X, 
+		data.jmenuitemExit = new JMenuItem("Exit");
+		data.jmenuitemExit.setFont(data.f12);
+		data.jmenuitemExit.setAccelerator(KeyStroke.getKeyStroke( KeyEvent.VK_X, 
 													ActionEvent.CTRL_MASK));
-		return jmenuitemExit;
+		return data.jmenuitemExit;
 		
 	}
 	
 	public JMenu creaMenuAjuda(){
-		jmenuHelp = new JMenu("Help");
-		jmenuHelp.setFont(f121);
-		jmenuHelp.setMnemonic(KeyEvent.VK_H);	
-		return jmenuHelp;
+		data.jmenuHelp = new JMenu("Help");
+		data.jmenuHelp.setFont(data.f121);
+		data.jmenuHelp.setMnemonic(KeyEvent.VK_H);	
+		return data.jmenuHelp;
 		
 	}
 	
 	public void loadGUI(){
 				//CREA EL MENU
-				jmenuFile = creaMenuFile();	
+				data.jmenuFile = creaMenuFile();	
 				//CREA ITEM DEL MENU
-				jmenuitemExit = creaMenuItem();
+				data.jmenuitemExit = creaMenuItem();
 				//AFEGEIX ITEMS AL MENU
-				jmenuFile.add(jmenuitemExit);
+				data.jmenuFile.add(data.jmenuitemExit);
 				//AFEGEIX MENU DE AJUDA
-				jmenuHelp = creaMenuAjuda();
+				data.jmenuHelp = creaMenuAjuda();
 	}
 }		//End of Swing Calculator Class.
 
