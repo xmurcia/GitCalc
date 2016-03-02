@@ -24,12 +24,10 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Window;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -37,7 +35,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class Calculator extends Other_Methods implements ActionListener{
+public class Calculator extends Listener_Buttons implements ActionListener{
 	/*
 	 * Variables in class "Global"
 	 */
@@ -136,168 +134,6 @@ public class Calculator extends Other_Methods implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}	//End of Contructor Calculator
 
-	// Perform action
-	public void actionPerformed(ActionEvent e){
-		double result = 0;
-	   
-		if(e.getSource() == data.jmenuitemAbout){
-			JDialog dlgAbout = new CustomABOUTDialog(this, "About Java Swing Calculator", true);
-			dlgAbout.setVisible(true);
-		}else if(e.getSource() == data.jmenuitemExit){
-			System.exit(0);
-		}	
-
-		// Search for the button pressed until end of array or key found
-		for (int i=0; i<jbnButtons.length; i++)
-		{
-			if(e.getSource() == jbnButtons[i])
-			{
-				switch(i)
-				{
-					case 0:
-						addDigitToDisplay(i);
-						break;
-
-					case 1:
-						addDigitToDisplay(i);
-						break;
-
-					case 2:
-						addDigitToDisplay(i);
-						break;
-
-					case 3:
-						addDigitToDisplay(i);
-						break;
-
-					case 4:
-						addDigitToDisplay(i);
-						break;
-
-					case 5:
-						addDigitToDisplay(i);
-							break;
-
-					case 6:
-						addDigitToDisplay(i);
-						break;
-
-					case 7:
-						addDigitToDisplay(i);
-						break;
-
-					case 8:
-						addDigitToDisplay(i);
-						break;
-
-					case 9:
-						addDigitToDisplay(i);
-						break;
-
-					case 10:	// +/-
-						processSignChange();
-						break;
-
-					case 11:	// decimal point
-						addDecimalPoint();
-						break;
-
-					case 12:	// =
-						processEquals();
-						break;
-
-					case 13:	// divide
-						processOperator("/");
-						break;
-
-					case 14:	// *
-						processOperator("*");
-						break;
-
-					case 15:	// -
-						processOperator("-");
-						break;
-
-					case 16:	// +
-						processOperator("+");
-						break;
-
-					case 17:	// sqrt
-						if (data.displayMode != Global.ERROR_MODE)
-						{
-							try
-							{
-								if (getDisplayString().indexOf("-") == 0)
-									displayError("Invalid input for function!");
-
-								result = Math.sqrt(getNumberInDisplay());
-								displayResult(result);
-							}
-
-							catch(Exception ex)
-							{
-								displayError("Invalid input for function!");
-								data.displayMode = Global.ERROR_MODE;
-							}
-						}
-						break;
-
-					case 18:	// 1/x
-						if (data.displayMode != Global.ERROR_MODE){
-							try
-							{
-								if (getNumberInDisplay() == 0)
-									displayError("Cannot divide by zero!");
-	
-								result = 1 / getNumberInDisplay();
-								displayResult(result);
-							}
-							
-							catch(Exception ex)	{
-								displayError("Cannot divide by zero!");
-								data.displayMode = Global.ERROR_MODE;
-							}
-						}
-						break;
-
-					case 19:	// %
-						if (data.displayMode != Global.ERROR_MODE){
-							try	{
-								result = getNumberInDisplay() / 100;
-								displayResult(result);
-							}
-	
-							catch(Exception ex)	{
-								displayError("Invalid input for function!");
-								data.displayMode = Global.ERROR_MODE;
-							}
-						}
-						break;
-
-					case 20:	// backspace
-						if (data.displayMode != Global.ERROR_MODE){
-							setDisplayString(getDisplayString().substring(0,
-										getDisplayString().length() - 1));
-							
-							if (getDisplayString().length() < 1)
-								setDisplayString("0");
-						}
-						break;
-
-					case 21:	// CE
-						clearExisting();
-						break;
-
-					case 22:	// C
-						clearAll();
-						break;
-				}
-			}
-		}
-	}
-
-	
-	
 	public void loadGUI(){
 				//CREA EL MENU
 				data.jmenuFile = creaMenuFile();	
