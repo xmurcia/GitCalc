@@ -48,41 +48,28 @@ public class Calculator extends JFrame implements ActionListener{
 	boolean clearOnNextDigit, percent;
 	double lastNumber;
 	String lastOperator;
-	private JMenu jmenuFile, jmenuHelp;
-	private JMenuItem jmenuitemExit, jmenuitemAbout;
-	private JLabel jlbOutput;
+	JMenu jmenuFile, jmenuHelp;
+	JMenuItem jmenuitemExit, jmenuitemAbout;
+    JLabel jlbOutput;
 	private JButton jbnButtons[];
 	private JPanel jplMaster, jplBackSpace, jplControl;
+	JPanel jplButtons;
 	
 	/*
 	 * Font Size and Style changed
 	 */
 	Font f12 = new Font("DejaVu Sans", 0, 20);
-	Font f121 = new Font("DejaVu Sans", 1, 20);
+	Font f121 = new Font("DejaVu Sans",  1, 20);
 	
 	
 	// Constructor 
 	public Calculator() 
 	{
-		/* Set Up the JMenuBar.
-		 * Have Provided All JMenu's with Mnemonics
-		 * Have Provided some JMenuItem components with Keyboard Accelerators
+		/* 
+		 * Load all GUI features
 		 */ 
+		loadGUI();
 		
-		
-		jmenuFile = new JMenu("File");
-		jmenuFile.setFont(f121);
-		jmenuFile.setMnemonic(KeyEvent.VK_F);
-		
-		jmenuitemExit = new JMenuItem("Exit");
-		jmenuitemExit.setFont(f12);
-		jmenuitemExit.setAccelerator(KeyStroke.getKeyStroke( KeyEvent.VK_X, 
-													ActionEvent.CTRL_MASK));
-		jmenuFile.add(jmenuitemExit);
-
-		jmenuHelp = new JMenu("Help");
-		jmenuHelp.setFont(f121);
-		jmenuHelp.setMnemonic(KeyEvent.VK_H);
 
 		jmenuitemAbout = new JMenuItem("About Calculator");
 		jmenuitemAbout.setFont(f12);
@@ -108,28 +95,17 @@ public class Calculator extends JFrame implements ActionListener{
 		
 		// Add components to frame
 		getContentPane().add(jlbOutput, BorderLayout.NORTH);
-
 		
 		//Function to create all calculator buttons
 		jbnButtons = creaBotons();
-
+		jplButtons = creaJPLButtons();	
 		
-		//	GridLayout(int rows, int cols, int hgap, int vgap) 
-		JPanel jplButtons = new JPanel();	
 		
 		jplBackSpace = new JPanel();
 		jplBackSpace.setLayout(new GridLayout(1, 1, 2, 2));
-		
-	
-
 		jplBackSpace.add(jbnButtons[20]);
-
 		jplControl = new JPanel();
 		jplControl.setLayout(new GridLayout(1, 2, 2 ,2));
-		
-
-		
-
 		jplControl.add(jbnButtons[21]);
 		jplControl.add(jbnButtons[22]);
 
@@ -145,45 +121,7 @@ public class Calculator extends JFrame implements ActionListener{
 		}
 	
 		// Set panel layout manager for a 4 by 5 grid
-		jplButtons.setLayout(new GridLayout(4, 5, 2, 2));
 		
-		//Add buttons to keypad panel starting at top left
-		// First row
-		for(int i=7; i<=9; i++)		{
-			jplButtons.add(jbnButtons[i]);
-		}
-		
-		// add button / and sqrt
-		jplButtons.add(jbnButtons[13]);
-		jplButtons.add(jbnButtons[17]);
-		
-		// Second row
-		for(int i=4; i<=6; i++)
-		{
-			jplButtons.add(jbnButtons[i]);
-		}
-		
-		// add button * and x^2
-		jplButtons.add(jbnButtons[14]);
-		jplButtons.add(jbnButtons[18]);
-
-		// Third row
-		for( int i=1; i<=3; i++)
-		{
-			jplButtons.add(jbnButtons[i]);
-		}
-		
-		//adds button - and %
-		jplButtons.add(jbnButtons[15]);
-		jplButtons.add(jbnButtons[19]);
-		
-		//Fourth Row
-		// add 0, +/-, ., +, and =
-		jplButtons.add(jbnButtons[0]);
-		jplButtons.add(jbnButtons[10]);
-		jplButtons.add(jbnButtons[11]);
-		jplButtons.add(jbnButtons[16]);
-		jplButtons.add(jbnButtons[12]);
 		
 		jplMaster.setLayout(new BorderLayout());
 		jplMaster.add(jplBackSpace, BorderLayout.WEST);
@@ -548,7 +486,6 @@ public class Calculator extends JFrame implements ActionListener{
 		clearOnNextDigit = true;
 	}
 	
-	
 	public JButton[] creaBotons(){
 		
 		jbnButtons = new JButton[23];
@@ -577,12 +514,92 @@ public class Calculator extends JFrame implements ActionListener{
 		
 	}
 	
-	public void addButtons(){
+	public JPanel creaJPLButtons(){
+		
+		jplButtons = new JPanel();
+		
+		jplButtons.setLayout(new GridLayout(4, 5, 2, 2));
+		
+		//Add buttons to keypad panel starting at top left
+		// First row
+		for(int i=7; i<=9; i++)		{
+			jplButtons.add(jbnButtons[i]);
+		}
+		
+		// add button / and sqrt
+		jplButtons.add(jbnButtons[13]);
+		jplButtons.add(jbnButtons[17]);
+		
+		// Second row
+		for(int i=4; i<=6; i++)
+		{
+			jplButtons.add(jbnButtons[i]);
+		}
+		
+		// add button * and x^2
+		jplButtons.add(jbnButtons[14]);
+		jplButtons.add(jbnButtons[18]);
+
+		// Third row
+		for( int i=1; i<=3; i++)
+		{
+			jplButtons.add(jbnButtons[i]);
+		}
+		
+		//adds button - and %
+		jplButtons.add(jbnButtons[15]);
+		jplButtons.add(jbnButtons[19]);
+		
+		//Fourth Row
+		// add 0, +/-, ., +, and =
+		jplButtons.add(jbnButtons[0]);
+		jplButtons.add(jbnButtons[10]);
+		jplButtons.add(jbnButtons[11]);
+		jplButtons.add(jbnButtons[16]);
+		jplButtons.add(jbnButtons[12]);
+		
+		return jplButtons;
 		
 		
 	}
-
 	
+	public JMenu creaMenuFile(){
+		
+		jmenuFile = new JMenu();
+		jmenuFile.setFont(f121);
+		jmenuFile.setMnemonic(KeyEvent.VK_F);
+		
+		return jmenuFile;
+		
+	}
+	
+	public JMenuItem creaMenuItem(){
+		jmenuitemExit = new JMenuItem("Exit");
+		jmenuitemExit.setFont(f12);
+		jmenuitemExit.setAccelerator(KeyStroke.getKeyStroke( KeyEvent.VK_X, 
+													ActionEvent.CTRL_MASK));
+		return jmenuitemExit;
+		
+	}
+	
+	public JMenu creaMenuAjuda(){
+		jmenuHelp = new JMenu("Help");
+		jmenuHelp.setFont(f121);
+		jmenuHelp.setMnemonic(KeyEvent.VK_H);	
+		return jmenuHelp;
+		
+	}
+	
+	public void loadGUI(){
+				//CREA EL MENU
+				jmenuFile = creaMenuFile();	
+				//CREA ITEM DEL MENU
+				jmenuitemExit = creaMenuItem();
+				//AFEGEIX ITEMS AL MENU
+				jmenuFile.add(jmenuitemExit);
+				//AFEGEIX MENU DE AJUDA
+				jmenuHelp = creaMenuAjuda();
+	}
 }		//End of Swing Calculator Class.
 
 
