@@ -24,12 +24,10 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Window;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -37,10 +35,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+<<<<<<< HEAD
 import org.junit.Before;
 import org.junit.Test;
 
 public class Calculator extends Create_GUI implements ActionListener{
+=======
+public class Calculator extends Listener_Buttons implements ActionListener{
+>>>>>>> branch 'master' of https://github.com/xmurcia/GitCalc.git
 	/*
 	 * Variables in class "Global"
 	 */
@@ -128,7 +130,7 @@ public class Calculator extends Create_GUI implements ActionListener{
 
 		clearAll();
 
-		//add WindowListener for closing frame and ending program
+		//add WindowListener for closing frame and ending program 
 		addWindowListener(new WindowAdapter() {
 
 				public void windowClosed(WindowEvent e)
@@ -140,6 +142,7 @@ public class Calculator extends Create_GUI implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}	//End of Contructor Calculator
 
+<<<<<<< HEAD
 	// Perform action
 	public void actionPerformed(ActionEvent e){
 		double result = 0;
@@ -478,6 +481,8 @@ public class Calculator extends Create_GUI implements ActionListener{
 	}
 	
 	
+=======
+>>>>>>> branch 'master' of https://github.com/xmurcia/GitCalc.git
 	public void loadGUI(){
 				//CREA EL MENU
 				data.jmenuFile = creaMenuFile();	
