@@ -18,13 +18,18 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import org.junit.Before;
+import org.junit.Test;
+
 public class Create_GUI extends Buttons {
 	CalculatorData data = new CalculatorData(new Font("DejaVu Sans", 0, 20), new Font("DejaVu Sans",  1, 20));
-
+	
+	
 	public Create_GUI() throws HeadlessException {
 		super();
 	}
 
+	
 	public Create_GUI(GraphicsConfiguration arg0) {
 		super(arg0);
 	}
@@ -68,7 +73,9 @@ public class Create_GUI extends Buttons {
 		return jbnButtons ;
 		
 	}
-
+	
+	
+	
 	public JPanel creaJPLButtons() {
 		
 		data.jplButtons = new JPanel();

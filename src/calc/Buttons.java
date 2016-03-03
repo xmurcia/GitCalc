@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.junit.Test;
+
 
 
 public class Buttons extends JFrame {
@@ -21,15 +23,18 @@ public class Buttons extends JFrame {
 	protected JPanel jplMaster;
 	protected JPanel jplBackSpace;
 	protected JPanel jplControl;
-
+	
+	
 	public Buttons() throws HeadlessException {
 		super();
 	}
-
+	
+	
 	public Buttons(GraphicsConfiguration arg0) {
 		super(arg0);
 	}
 
+	
 	public Buttons(String arg0) throws HeadlessException {
 		super(arg0);
 	}

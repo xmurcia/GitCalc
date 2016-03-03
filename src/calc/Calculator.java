@@ -37,6 +37,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import org.junit.Before;
+import org.junit.Test;
+
 public class Calculator extends Create_GUI implements ActionListener{
 	/*
 	 * Variables in class "Global"
@@ -45,6 +48,7 @@ public class Calculator extends Create_GUI implements ActionListener{
 
 
 	// Constructor 
+	
 	public Calculator() 
 	{
 		/* 
@@ -297,7 +301,6 @@ public class Calculator extends Create_GUI implements ActionListener{
 	}
 
 	
-	
 	void setDisplayString(String s){
 		data.jlbOutput.setText(s);
 	}
@@ -363,8 +366,9 @@ public class Calculator extends Create_GUI implements ActionListener{
 				displayResult(-numberInDisplay);
 		}
 	}
-
-	void clearAll()	{
+	
+	@Test
+	public void clearAll()	{
 		setDisplayString("0");
 		data.lastOperator = "0";
 		data.lastNumber = 0;
@@ -411,26 +415,11 @@ public class Calculator extends Create_GUI implements ActionListener{
 			data.lastOperator = op;
 		}
 	}
-
-	void processEquals(){
-		double result = 0;
-
-		if (data.displayMode != Global.ERROR_MODE){
-			try			
-			{
-				result = processLastOperator();
-				displayResult(result);
-			}
-			
-			catch (DivideByZeroException e)	{
-				displayError("Cannot divide by zero!");
-			}
-
-			data.lastOperator = "0";
-		}
-	}
-
-	double processLastOperator() throws DivideByZeroException {
+	
+	
+	
+	
+    public	double processLastOperator() throws DivideByZeroException {
 		double result = 0;
 		double numberInDisplay = getNumberInDisplay();
 
@@ -453,20 +442,41 @@ public class Calculator extends Create_GUI implements ActionListener{
 
 		return result;
 	}
-
-	void displayResult(double result){
+	
+	
+	public void displayResult(double result){
 		setDisplayString(Double.toString(result));
 		data.lastNumber = result;
 		data.displayMode = Global.RESULT_MODE;
 		data.clearOnNextDigit = true;
 	}
-
-	void displayError(String errorMessage){
+	
+	
+	public void displayError(String errorMessage){
 		setDisplayString(errorMessage);
 		data.lastNumber = 0;
 		data.displayMode = Global.ERROR_MODE;
 		data.clearOnNextDigit = true;
 	}
+	
+	public void processEquals(){
+		double result = 0;
+
+		if (data.displayMode != Global.ERROR_MODE){
+			try			
+			{
+				result = processLastOperator();
+				displayResult(result);
+			}
+			
+			catch (DivideByZeroException e)	{
+				displayError("Cannot divide by zero!");
+			}
+
+			data.lastOperator = "0";
+		}
+	}
+	
 	
 	public void loadGUI(){
 				//CREA EL MENU

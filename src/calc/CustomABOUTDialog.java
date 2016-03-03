@@ -21,7 +21,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-class CustomABOUTDialog extends JDialog implements ActionListener {
+import org.junit.Test;
+
+ class CustomABOUTDialog extends JDialog implements ActionListener {
 	JButton jbnOk;
 
 	CustomABOUTDialog(JFrame parent, String title, boolean modal){
@@ -65,7 +67,8 @@ class CustomABOUTDialog extends JDialog implements ActionListener {
 
 		pack();
 	}
-
+	
+	
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == jbnOk)	{
